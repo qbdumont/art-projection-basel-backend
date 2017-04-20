@@ -1,8 +1,92 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@font-face {
+    font-family: 'Samsung';
+    src: url('../assets/SamsungSharpSans-Bold.ttf');
+    /* IE9 Compat Modes */
 }
 
-a {
-  color: #00B7FF;
+.henna div {
+    background: #fff;
+    color: #3498db;
+    font-size: 36px;
+    line-height: 100px;
+    margin: 10px;
+    padding: 2%;
+    position: relative;
+    text-align: center;
+}
+
+.henna div img {
+    max-width: 15rem;
+}
+
+.item img {
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.slick-track {
+    margin: 0 auto;
+}
+
+.slick-slider {
+    height: 30rem;
+}
+
+.multiple-items {
+    background-color: black;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.canvas-container {
+    width: 100% !important;
+    height: 63vh !important;
+}
+
+
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.samsung_logo img {
+    width: 23rem;
+}
+
+.samsung_logo {
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 1rem;
+    text-align: center;
+}
+
+.buttons {
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    color: white;
+}
+
+.cancel-button {
+    float: left;
+}
+
+.submit-button {
+    float: right;
+}
+
+.button {
+    padding: 1rem;
+}
+
+h2 {
+    font-family: "Samsung";
 }
