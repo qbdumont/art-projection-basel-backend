@@ -177,12 +177,13 @@ if (window.location.pathname === "/henna") {
         $.ajax({
             url: '/update-images',
             success: function (data) {
-                if ($('ul li').length > 1) {
+                if ($('ul li').length > 0) {
                     console.log($('ul li').length, data.length);
                     if (data.length > $('ul li').length) {
                         for (var j = 1; j < (data.length - $('ul li').length) + 1; j++) {
                             console.log(j)
-                            var htmlText = '<li><div class="item-container"><h1>' + data[data.length - j].name + '</h1><img src="../assets/' + data[data.length - j].henna + '.png" class="artist-image"><input '+data[data.length - j].checked+'type="checkbox" name="finished" onchange="markAsDone(this);"></div></li>'
+                            var htmlText = '<li><div class="item-container"><h1>' + data[data.length - j].name + '</h1><img src="../assets/' + data[data.length - j].henna + '.png" class="artist-image"><input type="checkbox" name="'+data[data.length - j].name+','
+                            +data[data.length - j].henna+'" onchange="markAsDone(this);"></div></li>'
                         }
                         $('ul').append(htmlText);
                     } else {
@@ -216,7 +217,7 @@ if (window.location.pathname === "/henna") {
         console.log(doneData);
         $.post("/finish", doneData)
             .done(function (response) {
-
+                res.send("ok")
             });
     }
 

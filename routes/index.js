@@ -109,7 +109,7 @@ router.post('/finish', function (req, res, next) {
 //        console.log(doneData[0], doneData[1])
         
         for (var i = 0; i < data.length; i++){
-//            console.log(doneData.name, data[i].name, doneData.selection, data[i].henna )
+            console.log(doneData.name, data[i].name, doneData.selection, data[i].henna )
             if (doneData.name === data[i].name && doneData.selection === data[i].henna ){
                 data[i].checked = "checked";
                 console.log("FOUND MATCH", doneData.name, data[i].name, doneData.selection, data[i].henna )
