@@ -32,19 +32,19 @@ fs.writeFileIfNotExist = function (fname, contents, options, callback) {
 }
 var sample = [{
     name: "Bob",
-    henna: "henna1"
+    nameC: "bobexample"
 }];
 var fileName;
 var file;
 // sample usage
-fs.writeFileIfNotExist("./henna.json", JSON.stringify(sample), function (err, existed) {
+fs.writeFileIfNotExist("./pillar.json", JSON.stringify(sample), function (err, existed) {
     if (err) {
         // error here
     } else {
         // data was written or file already existed
         // existed flag tells you which case it was
         console.log("file written or exist", existed);
-        //        fileName = '../henna.json';
+        //        fileName = '../pillar.json';
         //        file = require(fileName);
     }
 });
@@ -56,24 +56,18 @@ router.get('/', function (req, res, next) {
     });
 });
 router.post('/saveImage', function (req, res, next) {
-    var data = req.body;
-    var file = './images/' + data.time + '.json';
-    var obj = data;
-    console.log("here", obj)
-    jsonfile.writeFile(file, obj, function (err) {
-        console.error(err);
-        res.send("ok");
-    })
-});
-
-
-router.post('/henna-post', function (req, res, next) {
-    var data = req.body;
-    //    console.log(data);
-
-    var name = req.body.name;
-    var henna = req.body.selection;
-    fs.readFile('./henna.json', 'utf8', function (err, data) {
+   
+    var base64Data = req.body.image;
+    base64Data = base64Data.replace("data:image/png;base64,", "");
+    var file_name = req.body.nameC.replace(" ", "_");
+    
+    fs.writeFile("public/custom_images/"+file_name+".png", base64Data, 'base64', function (err) {
+        console.log(err);
+        
+    });
+        var name = req.body.name;
+//    var pillar = req.body.selection;
+    fs.readFile('./pillar.json', 'utf8', function (err, data) {
         if (err) {
             return console.log(err);
         }
@@ -81,12 +75,13 @@ router.post('/henna-post', function (req, res, next) {
         data = JSON.parse(data);
         var newData = {
             "name": name,
-            "henna": henna
+            "nameC": file_name
+//            "pillar": pillar
         };
         data.push(newData);
         console.log("data", data);
 
-        fs.writeFile("henna.json", JSON.stringify(data), function (err) {
+        fs.writeFile("pillar.json", JSON.stringify(data), function (err) {
             if (err) {
                 return console.log(err);
             }
@@ -96,26 +91,43 @@ router.post('/henna-post', function (req, res, next) {
 
     });
 
+//    var data = req.body;
+//    var file = './images/' + data.time + '.json';
+//    var obj = data;
+//    console.log("here", obj)
+//    jsonfile.writeFile(file, obj, function (err) {
+//        console.error(err);
+//        res.send("ok");
+//    })
+});
+
+
+router.post('/pillar-post', function (req, res, next) {
+    var data = req.body;
+    //    console.log(data);
+
+
+
 })
 
 router.post('/finish', function (req, res, next) {
     var doneData = req.body;
     console.log("here", req.body)
-    fs.readFile('./henna.json', 'utf8', function (err, data) {
-        if(err) {
+    fs.readFile('./pillar.json', 'utf8', function (err, data) {
+        if (err) {
             return console.log(err);
         }
         data = JSON.parse(data);
-//        console.log(doneData[0], doneData[1])
-        
-        for (var i = 0; i < data.length; i++){
-            console.log(doneData.name, data[i].name, doneData.selection, data[i].henna )
-            if (doneData.name === data[i].name && doneData.selection === data[i].henna ){
+        //        console.log(doneData[0], doneData[1])
+
+        for (var i = 0; i < data.length; i++) {
+            console.log(doneData.name, data[i].name, doneData.selection, data[i].pillar)
+            if (doneData.name === data[i].nameC && doneData.selection === data[i].nameC) {
                 data[i].checked = "checked";
-                console.log("FOUND MATCH", doneData.name, data[i].name, doneData.selection, data[i].henna )
+                console.log("FOUND MATCH", doneData.name, data[i].name, doneData.selection, data[i].pillar)
             }
         }
-                fs.writeFile("henna.json", JSON.stringify(data), function (err) {
+        fs.writeFile("pillar.json", JSON.stringify(data), function (err) {
             if (err) {
                 return console.log(err);
             }
@@ -131,7 +143,7 @@ router.post('/finish', function (req, res, next) {
 router.get('/update-images/', function (req, res, next) {
     //    res.send(outputString);
     console.log(req.params.image);
-    jsonfile.readFile("./henna.json", function (err, obj) {
+    jsonfile.readFile("./pillar.json", function (err, obj) {
         if (obj) {
             //            console.dir(obj.image);
             res.send(obj);
@@ -142,17 +154,17 @@ router.get('/update-images/', function (req, res, next) {
 });
 
 
-router.get('/henna', function (req, res, next) {
-    res.render('henna', {});
+router.get('/pillar', function (req, res, next) {
+    res.render('pillar', {});
 })
 
 // var itemsProcessed = 0;
 router.get('/images', function (req, res, next) {
 
-    jsonfile.readFile("./henna.json", function (err, obj) {
+    jsonfile.readFile("./pillar.json", function (err, obj) {
         console.log(obj)
         if (obj) {
-                        console.dir(obj.image);
+            console.dir(obj.image);
             //            res.send(obj);
             res.render('images', {
                 images: obj

@@ -6211,7 +6211,7 @@ fabric.ElementsParser.prototype.checkIfDone = function() {
      * @type Boolean
      * @default
      */
-    allowTouchScrolling: false,
+    allowTouchScrolling: true,
 
     /**
      * Indicates whether this canvas will use image smoothing, this is on by default in browsers
@@ -17943,11 +17943,11 @@ fabric.util.object.extend(fabric.Object.prototype, /** @lends fabric.Object.prot
   // to enable locking behavior on group
   // when one of its objects has lock-related properties set
   var _lockProperties = {
-    lockMovementX:  true,
-    lockMovementY:  true,
-    lockRotation:   true,
-    lockScalingX:   true,
-    lockScalingY:   true,
+    lockMovementX:  false,
+    lockMovementY:  false,
+    lockRotation:   false,
+    lockScalingX:   false,
+    lockScalingY:   false,
     lockUniScaling: true
   };
 

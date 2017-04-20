@@ -4,7 +4,7 @@
     /* IE9 Compat Modes */
 }
 
-.henna div {
+.pillar div {
     background: #fff;
     color: #3498db;
     font-size: 36px;
@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.henna div img {
+.pillar div img {
     max-width: 15rem;
 }
 
@@ -24,8 +24,10 @@
 }
 
 .item-container {
+        padding: 1rem;
     text-align: center;
 }
+
 
 input[type=checkbox] {
     /* Double-sized Checkboxes */
