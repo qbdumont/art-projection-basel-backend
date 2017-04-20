@@ -2,4 +2,13 @@ extends layout
 
 block content
   h1= title
-  div#images
+  ul.no-bullet.inline
+    each item in images
+      li
+        div.item-container
+            h1 #{item.name}
+            img.artist-image(src="../assets/"+item.henna+".png")
+            if item.checked == "checked"
+                input(type="checkbox", name="#{item.name},#{item.henna}", onchange="markAsDone(this)", checked="true")
+            else
+                input(type="checkbox", name="#{item.name},#{item.henna}", onchange="markAsDone(this)")

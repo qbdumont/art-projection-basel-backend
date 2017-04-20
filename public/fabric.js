@@ -22666,7 +22666,7 @@ fabric.Image.filters.BaseFilter.fromObject = function(object, callback) {
      * @type String
      * @default
      */
-    selectionColor: 'rgba(17,119,255,0.3)',
+    selectionColor: 'rgba(17,119,255,0)',
 
     /**
      * Indicates whether text is in editing mode
@@ -22687,7 +22687,7 @@ fabric.Image.filters.BaseFilter.fromObject = function(object, callback) {
      * @type String
      * @default
      */
-    editingBorderColor: 'rgba(102,153,255,0.25)',
+    editingBorderColor: 'rgba(102,153,255,0)',
 
     /**
      * Width of cursor (in px)
