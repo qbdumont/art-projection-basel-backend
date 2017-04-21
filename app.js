@@ -15,7 +15,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://35.166.220.119:9000');
+    //SMres.header('Access-Control-Allow-Origin', 'http://35.166.220.119:9000');
+    res.header('Access-Control-Allow-Origin', 'http://34.210.23.100:9000');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
 
